@@ -1,4 +1,19 @@
-const maxBy = require('lodash/maxBy')
+const maxByProp = (arr, prop) => {
+  const max = arr.reduce(
+    (acc, item) => {
+      const itemVal = item[prop]
+      if (!acc.max || itemVal > acc.max) {
+        acc.max = itemVal
+        acc.maxItem = item
+      }
+
+      return acc
+    },
+    { max: null, maxItem: null },
+  )
+
+  return max.maxItem
+}
 
 const parseLine = lineStr => {
   const splitLine = lineStr.split(' ')
@@ -19,7 +34,7 @@ const parseLine = lineStr => {
 
 assignTalks = (confArr, talksArr) => {
   talksArr.forEach(talk => {
-    const track = maxBy(confArr, 'timeLeft')
+    const track = maxByProp(confArr, 'timeLeft')
 
     if (track.timeLeft < talk.minutes) {
       throw new Error('Too many talks to fit in the time')
