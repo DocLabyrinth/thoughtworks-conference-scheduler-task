@@ -18,15 +18,11 @@ allTalks.sort((a, b) => {
 })
 
 const conference = [
-  { day: 1, time: 'morning', maxTime: 180, timeLeft: 180, talks: [] },
-  { day: 1, time: 'afternoon', maxTime: 240, timeLeft: 240, talks: [] },
-  { day: 2, time: 'morning', maxTime: 180, timeLeft: 180, talks: [] },
-  { day: 2, time: 'afternoon', maxTime: 240, timeLeft: 240, talks: [] },
+  utils.createTrackPeriod(1, 'morning'),
+  utils.createTrackPeriod(1, 'afternoon'),
+  utils.createTrackPeriod(2, 'morning'),
+  utils.createTrackPeriod(2, 'afternoon'),
 ]
 
 const assigned = utils.assignTalks(conference, allTalks)
-assigned.forEach(track => {
-  console.log({ track })
-
-  track.talks.forEach(talk => console.log(talk))
-})
+console.log(utils.getTimetableLines(assigned).join('\n'))
