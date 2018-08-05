@@ -1,6 +1,4 @@
 const fs = require('fs')
-const moment = require('moment')
-
 const utils = require('./utils')
 
 const input = fs
